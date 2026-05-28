@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlushShip - Vitrine de Pelúcias</title>
+    <style>
+        /* --- ESTILOS GERAIS (ESTILO MAKESHIP) --- */
+        :root {
+            --bg-site: #f8f9fc;
+            --bg-card: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --accent-blue: #2563eb;
+            --accent-success: #10b981;
+            --radius-large: 24px;
+            --radius-medium: 16px;
+            --radius-pill: 50px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-site);
+            color: var(--text-main);
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- NAVBAR / HEADER --- */
+        .navbar {
+            background: var(--bg-card);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            sticky: top;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+        .logo span { color: var(--accent-blue); }
+
+        .cart-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* --- CAROUSEL DE MARCAS --- */
+        .brands-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .brands-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .brands-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: var(--radius-medium);
+        }
+        .brand-item {
+            font-weight: 700;
+            color: #9ca3af;
+            font-size: 1.1rem;
+        }
+
+        /* --- SELEÇÃO DE PRODUTO / FILTROS --- */
+        .filter-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .filter-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .select-custom {
+            padding: 10px 20px;
+            border-radius: var(--radius-pill);
+            border: 2px solid #e5e7eb;
+            background-color: var(--bg-card);
+            font-weight: 600;
+            color: var(--text-main);
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* --- JANELAS DE VENDA (GRID DE CARDS) --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
+
+        .img-container {
+            background-color: #f3f4f6;
+            height: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .badge-time {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ffffff;
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        /* Metas e Barras do Makeship */
+        .progress-box {
+            background: #e5e7eb;
+            height: 10px;
+            border-radius: var(--radius-pill);
+            overflow: hidden;
+            margin-bottom: 6px;
+        }
+        .progress-bar {
+            background: var(--accent-blue);
+            height: 100%;
+            width: 0%; /* Animado via JS */
+            border-radius: var(--radius-pill);
+        }
+        .progress-bar.funded {
+            background: var(--accent-success);
+        }
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* --- JANELA FLUTUANTE (MODAL DE DETALHES) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: var(--bg-card);
+            width: 90%;
+            max-width: 650px;
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #f3f4f6;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .modal-img {
+            flex: 1;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-details h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .modal-details p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .btn-buy {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: var(--radius-medium);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn-buy:hover {
+            background: #1d4ed8;
+        }
+
+        /* Responsividade Básica do Modal */
+        @media (max-width: 600px) {
+            .modal-body { flex-direction: column; }
+            .modal-img { height: 250px; }
+            .modal-details { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">🎯 Plush<span>Ship</span></div>
+        <button class="cart-btn">🛒 Sacola (0)</button>
+    </header>
+
+    <div class="container">
+        
+        <section class="brands-section">
+            <h4 class="brands-title">Marcas Parceiras Oficiais</h4>
+            <div class="brands-wrapper">
+                <div class="brand-item">IndieDevs</div>
+                <div class="brand-item">V-Tubers Club</div>
+                <div class="brand-item">ToonStudio</div>
+                <div class="brand-item">AnimaWorld</div>
+            </div>
+        </section>
+
+        <section class="filter-section">
+            <h3 class="filter-title">Campanhas Disponíveis</h3>
+            <select class="select-custom" id="categoryFilter">
+                <option value="todos">Todos os Produtos</option>
+                <option value="ativos">Mais Próximos da Meta</option>
+                <option value="novos">Recém Lançados</option>
+            </select>
+        </section>
+
+        <main class="products-grid">
+            
+            <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Astro Cat', 'R$ 149,90', 'https://images.unsplash.com/photo-1559251606-c623743a6d76?w=500&auto=format&fit=crop&q=60', 'O gato espacial mais fofo do universo pronto para colonizar a sua estante de colecionáveis. Edição estritamente limitada.')">
+                <div class="img-container">
+                    <span class="badge-time">⏳ 3 dias restantes</span>
+                    <img src="https://images.unsplash.com/photo-1559251606-c623743a6d76?w=500&auto=format&fit=crop&q=60" alt="Astro Cat">
+                </div>
+                <div class="card-info">
+                    <h3 class="product-title">Pelúcia Astro Cat</h3>
+                    <p class="product-price">R$ 149,90</p>
+                    <div class="progress-box">
+                        <div class="progress-bar" style="width: 85%;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span><strong>85%</strong> Alcançado</span>
+                        <span>170 vendidos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="abrirJanelaFlutuante('Chonky Slime Soft', 'R$ 129,90', 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=500&auto=format&fit=crop&q=60', 'Ele bateu a meta! Este monstrinho gelatinoso macio está 100% confirmado para produção. Garanta o seu antes do fim do cronômetro.')">
+                <div class="img-container">
+                    <span class="badge-time">⏳ 9 dias restantes</span>
+                    <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=500&auto=format&fit=crop&q=60" alt="Chonky Slime">
+                </div>
+                <div class="card-info">
+                    <h3 class="product-title">Chonky Slime Soft</h3>
+                    <p class="product-price">R$ 129,90</p>
+                    <div class="progress-box">
+                        <div class="progress-bar funded" style="width: 100%;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span style="color: var(--accent-success);"><strong>100% Financiado!</strong></span>
+                        <span>342 vendidos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" onclick="abrirJanelaFlutuante('Urso Pixel Retrô', 'R$ 159,90', 'https://images.unsplash.com/photo-1618895509373-388219f7fd47?w=500&auto=format&fit=crop&q=60', 'Inspirado nos clássicos jogos de 8-bits. Uma pelúcia geométrica com acabamento premium e tecido super confortável.')">
+                <div class="img-container">
+                    <span class="badge-time">⏳ 14 dias restantes</span>
+                    <img src="https://images.unsplash.com/photo-1618895509373-388219f7fd47?w=500&auto=format&fit=crop&q=60" alt="Pixel Bear">
+                </div>
+                <div class="card-info">
+                    <h3 class="product-title">Urso Pixel Retrô</h3>
+                    <p class="product-price">R$ 159,90</p>
+                    <div class="progress-box">
+                        <div class="progress-bar" style="width: 42%;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span><strong>42%</strong> Alcançado</span>
+                        <span>84 vendidos</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="modal-overlay" id="productModal" onclick="fecharJanelaFlutuante(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="forçarFechar()">✕</button>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img id="modalImgSrc" src="" alt="Produto">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle">Nome do Produto</h2>
+                    <p id="modalDescription">Descrição detalhada do item selecionado aparecerá aqui.</p>
+                    <button class="btn-buy" id="modalPriceBtn">Apoiá Campanha - R$ 0,00</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('productModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalImgSrc = document.getElementById('modalImgSrc');
+        const modalPriceBtn = document.getElementById('modalPriceBtn');
+
+        // Abre a janela flutuante injetando os dados do produto clicado
+        function abrirJanelaFlutuante(nome, preco, imgUrl, descricao) {
+            modalTitle.textContent = nome;
+            modalDescription.textContent = descricao;
+            modalImgSrc.src = imgUrl;
+            modalPriceBtn.textContent = `Apoiá Campanha • ${preco}`;
+            
+            modal.classList.add('active');
+        }
+
+        // Fecha a janela se clicar fora do card interno
+        function fecharJanelaFlutuante(event) {
+            if (event.target === modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Força fechar no botão de "X"
+        function forçarFechar() {
+            modal.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
