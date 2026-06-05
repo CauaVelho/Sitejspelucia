@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlushShip - Vitrine de Pelúcias</title>
+    <title>BEAMDEEP - Pelúcias Exclusivas</title>
     <style>
         /* --- ESTILOS GERAIS (ESTILO MAKESHIP) --- */
         :root {
-            --bg-site: #f8f9fc;
-            --bg-card: #ffffff;
+            --bg-site: #530ba5c4;
+            --bg-card: #e6e6e656;
             --text-main: #111827;
-            --text-muted: #6b7280;
-            --accent-blue: #2563eb;
+            --text-muted: #0d0d0e;
+            --accent-blue: #a225eba1;
             --accent-success: #10b981;
-            --radius-large: 24px;
-            --radius-medium: 16px;
-            --radius-pill: 50px;
+            --radius-large: 20px;
+            --radius-medium: 40px;
+            --radius-pill: 70px;
         }
 
         * {
@@ -32,9 +32,9 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1250px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 25px;
         }
 
         /* --- NAVBAR / HEADER --- */
@@ -43,7 +43,7 @@
             padding: 20px 5%;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: center ;
             border-bottom: 1px solid #e5e7eb;
             sticky: top;
             position: sticky;
@@ -52,7 +52,7 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 800;
         }
         .logo span { color: var(--accent-blue); }
@@ -71,24 +71,24 @@
             text-align: center;
         }
         .brands-title {
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-transform: uppercase;
             color: var(--text-muted);
-            letter-spacing: 1px;
+            letter-spacing: 5px;
             margin-bottom: 15px;
         }
         .brands-wrapper {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 60px;
             flex-wrap: wrap;
             background: var(--bg-card);
-            padding: 20px;
+            padding: 25px;
             border-radius: var(--radius-medium);
         }
         .brand-item {
-            font-weight: 700;
-            color: #9ca3af;
+            font-weight: 900;
+            color: #18181ac7;
             font-size: 1.1rem;
         }
 
@@ -96,8 +96,8 @@
         .filter-section {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
+            align-items: right;
+            margin-bottom: 30px;
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -106,10 +106,10 @@
             font-weight: 700;
         }
         .select-custom {
-            padding: 10px 20px;
-            border-radius: var(--radius-pill);
+            padding: 10px 30px;
+            border-radius: var(--radius-medium);
             border: 2px solid #e5e7eb;
-            background-color: var(--bg-card);
+            background-color:#b148eed3;
             font-weight: 600;
             color: var(--text-main);
             outline: none;
@@ -127,15 +127,15 @@
             background: var(--bg-card);
             border-radius: var(--radius-large);
             overflow: hidden;
-            border: 1px solid #f1f5f9;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #ffffff;
+            box-shadow: 1px 10px 10px 10px rgba(1,0,0,0.05);
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: transform 2s, box-shadow 1s;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 15px -3px rgb(0, 0, 0, 1);
         }
 
         .img-container {
@@ -158,11 +158,11 @@
             top: 15px;
             left: 15px;
             background: #ffffff;
-            padding: 6px 12px;
+            padding: 6px 10px;
             border-radius: var(--radius-pill);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgb(255, 255, 255,0.5);
         }
 
         .card-info {
@@ -170,20 +170,20 @@
         }
 
         .product-title {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .product-price {
             font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--accent-blue);
-            margin-bottom: 15px;
+            font-weight: 700;
+            color: rgb(219, 216, 213);
+            margin-bottom: 10px;
         }
 
         /* Metas e Barras do Makeship */
-        .progress-box {
+       /* .progress-box {
             background: #e5e7eb;
             height: 10px;
             border-radius: var(--radius-pill);
@@ -194,9 +194,10 @@
             background: var(--accent-blue);
             height: 100%;
             width: 0%; /* Animado via JS */
-            border-radius: var(--radius-pill);
+         /*   border-radius: var(--radius-pill);
         }
-        .progress-bar.funded {
+        */
+        /*.progress-bar.funded {
             background: var(--accent-success);
         }
         .progress-text {
@@ -206,12 +207,13 @@
             color: var(--text-muted);
             font-weight: 500;
         }
+        */
 
         /* --- JANELA FLUTUANTE (MODAL DE DETALHES) --- */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 0px;
+            left: 0px;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
@@ -222,7 +224,7 @@
             z-index: 200;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.5s ease;
         }
 
         .modal-overlay.active {
@@ -251,14 +253,14 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #f3f4f6;
+            background: #f0f0f0;
             border: none;
             width: 35px;
             height: 35px;
-            border-radius: 50%;
+            border-radius: 60%;
             font-weight: bold;
             cursor: pointer;
-            z-index: 5;
+            z-index: 10;
         }
 
         .modal-body {
@@ -268,7 +270,7 @@
 
         .modal-img {
             flex: 1;
-            background: #f3f4f6;
+            background: #dfdfdf;
             display: flex;
             align-items: center;
         }
@@ -281,45 +283,45 @@
 
         .modal-details {
             flex: 1;
-            padding: 30px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .modal-details h2 {
-            font-size: 1.6rem;
+            font-size: 2.0rem;
             margin-bottom: 10px;
         }
 
         .modal-details p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
+            font-size: 1.25rem;
+            margin-bottom: 30px;
             line-height: 1.4;
         }
 
         .btn-buy {
             background: var(--accent-blue);
-            color: white;
+            color: rgb(255, 255, 255);
             border: none;
             padding: 15px;
-            border-radius: var(--radius-medium);
-            font-size: 1rem;
-            font-weight: 700;
+            border-radius: var(--radius-pill);
+            font-size: 1.2rem;
+            font-weight: 500;
             cursor: pointer;
             width: 100%;
             transition: background 0.2s;
         }
 
         .btn-buy:hover {
-            background: #1d4ed8;
+            background: #650479c5;
         }
 
         /* Responsividade Básica do Modal */
         @media (max-width: 600px) {
             .modal-body { flex-direction: column; }
-            .modal-img { height: 250px; }
+            .modal-img { height: 450px; }
             .modal-details { padding: 20px; }
         }
     </style>
@@ -327,83 +329,89 @@
 <body>
 
     <header class="navbar">
-        <div class="logo">🎯 Plush<span>Ship</span></div>
-        <button class="cart-btn">🛒 Sacola (0)</button>
+        <div class="logo" style="display: flex;"> <!-- "align-items: center; gap: 10px;"-->
+        
+        <img src="beam.png" alt="Logo" style="height: 1em; width: auto;"> 
+        
+        BEAM<span>DEEP</span>
+        <button class="cart-btn"><img src="saco.png" style="width: 40px; height: 40px; "> Carrinho (0)</button>
     </header>
 
     <div class="container">
         
         <section class="brands-section">
-            <h4 class="brands-title">Marcas Parceiras Oficiais</h4>
+            <h4 class="brands-title">Produtos Oficiais</h4>
             <div class="brands-wrapper">
-                <div class="brand-item">IndieDevs</div>
-                <div class="brand-item">V-Tubers Club</div>
-                <div class="brand-item">ToonStudio</div>
-                <div class="brand-item">AnimaWorld</div>
+                <div class="brand-item">Chainsaw Man</div>
+                <div class="brand-item">Fate SAGA</div>
+                <div class="brand-item">Jujutsu Kaisen</div>
+                <div class="brand-item">Bleach</div>
             </div>
         </section>
 
         <section class="filter-section">
-            <h3 class="filter-title">Campanhas Disponíveis</h3>
+            <h3 class="filter-title">Produtos Disponíveis</h3>
             <select class="select-custom" id="categoryFilter">
                 <option value="todos">Todos os Produtos</option>
-                <option value="ativos">Mais Próximos da Meta</option>
-                <option value="novos">Recém Lançados</option>
+                <option value="ativos">Mais Vendidos</option>
+                <option value="novos">Lançamentos</option>
+                <option value="ativos">Indisponíves</option>
+
             </select>
         </section>
 
         <main class="products-grid">
             
-            <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Astro Cat', 'R$ 149,90', 'https://images.unsplash.com/photo-1559251606-c623743a6d76?w=500&auto=format&fit=crop&q=60', 'O gato espacial mais fofo do universo pronto para colonizar a sua estante de colecionáveis. Edição estritamente limitada.')">
+            <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Pochita', 'R$ 89,99', 'pochita.png' , 'Pochita o ser mais fofo de Chainsaw Man pode ser seu! Como uma pelúcia decorativa. Edição estritamente limitada.')">
                 <div class="img-container">
-                    <span class="badge-time">⏳ 3 dias restantes</span>
-                    <img src="https://images.unsplash.com/photo-1559251606-c623743a6d76?w=500&auto=format&fit=crop&q=60" alt="Astro Cat">
+                    <!--<span class="badge-time">⏳ 3 dias restantes</span>-->
+                    <img src="pochita.png" alt="Pelúcia Pochita">
                 </div>
                 <div class="card-info">
-                    <h3 class="product-title">Pelúcia Astro Cat</h3>
-                    <p class="product-price">R$ 149,90</p>
+                    <h3 class="product-title">Pelúcia Pochita</h3>
+                    <p class="product-price">R$ 89,99</p>
                     <div class="progress-box">
                         <div class="progress-bar" style="width: 85%;"></div>
                     </div>
                     <div class="progress-text">
-                        <span><strong>85%</strong> Alcançado</span>
-                        <span>170 vendidos</span>
+                        <span><strong>170</strong> Produtos vendidos</span>
+                        
                     </div>
                 </div>
             </div>
 
-            <div class="product-card" onclick="abrirJanelaFlutuante('Chonky Slime Soft', 'R$ 129,90', 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=500&auto=format&fit=crop&q=60', 'Ele bateu a meta! Este monstrinho gelatinoso macio está 100% confirmado para produção. Garanta o seu antes do fim do cronômetro.')">
+            <div class="product-card" onclick="abrirJanelaFlutuante('Gilgamesh', 'R$ 100,90', 'gilgamesh.png' , 'O maior rei de toda Babilônia, agora disponivel como uma pelúcia adorável para sua estante. Garanta o seu agora.')">
                 <div class="img-container">
-                    <span class="badge-time">⏳ 9 dias restantes</span>
-                    <img src="https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=500&auto=format&fit=crop&q=60" alt="Chonky Slime">
+                   <!-- <span class="badge-time">⏳ 9 dias restantes</span> -->
+                    <img src="gilgamesh.png" alt="Gilgamesh">
                 </div>
                 <div class="card-info">
-                    <h3 class="product-title">Chonky Slime Soft</h3>
-                    <p class="product-price">R$ 129,90</p>
+                    <h3 class="product-title">Gilgamesh</h3>
+                    <p class="product-price">R$ 100,90</p>
                     <div class="progress-box">
                         <div class="progress-bar funded" style="width: 100%;"></div>
                     </div>
                     <div class="progress-text">
-                        <span style="color: var(--accent-success);"><strong>100% Financiado!</strong></span>
-                        <span>342 vendidos</span>
+                        <span> <!-- style="color: var(--accent-success);"> --><strong>342</strong> Produtos vendidos</span>
+                        
                     </div>
                 </div>
             </div>
 
-            <div class="product-card" onclick="abrirJanelaFlutuante('Urso Pixel Retrô', 'R$ 159,90', 'https://images.unsplash.com/photo-1618895509373-388219f7fd47?w=500&auto=format&fit=crop&q=60', 'Inspirado nos clássicos jogos de 8-bits. Uma pelúcia geométrica com acabamento premium e tecido super confortável.')">
+            <div class="product-card" onclick="abrirJanelaFlutuante('Satoru Gojo', 'R$ 120,00', 'gojo.png', 'Entre o ceús e a terra, ele pode ser seu! Adquira essa pelúcia exclusiva do Satoru Gojo.')">
                 <div class="img-container">
-                    <span class="badge-time">⏳ 14 dias restantes</span>
-                    <img src="https://images.unsplash.com/photo-1618895509373-388219f7fd47?w=500&auto=format&fit=crop&q=60" alt="Pixel Bear">
+                    <!-- <span class="badge-time">⏳ 14 dias restantes</span> -->
+                    <img src="gojo.png" alt="Satoru Gojo">
                 </div>
                 <div class="card-info">
-                    <h3 class="product-title">Urso Pixel Retrô</h3>
-                    <p class="product-price">R$ 159,90</p>
+                    <h3 class="product-title">Satoru Gojo</h3>
+                    <p class="product-price">R$ 120,00</p>
                     <div class="progress-box">
-                        <div class="progress-bar" style="width: 42%;"></div>
+                        <div class="progress-bar" style="width: 85%;"></div>
                     </div>
                     <div class="progress-text">
-                        <span><strong>42%</strong> Alcançado</span>
-                        <span>84 vendidos</span>
+                        <span><strong>240</strong> Produtos vendidos</span>
+                        
                     </div>
                 </div>
             </div>
@@ -421,7 +429,7 @@
                 <div class="modal-details">
                     <h2 id="modalTitle">Nome do Produto</h2>
                     <p id="modalDescription">Descrição detalhada do item selecionado aparecerá aqui.</p>
-                    <button class="btn-buy" id="modalPriceBtn">Apoiá Campanha - R$ 0,00</button>
+                    <button class="btn-buy" id="modalPriceBtn">Ver detalhes - R$ 0,00</button>
                 </div>
             </div>
         </div>
@@ -439,7 +447,7 @@
             modalTitle.textContent = nome;
             modalDescription.textContent = descricao;
             modalImgSrc.src = imgUrl;
-            modalPriceBtn.textContent = `Apoiá Campanha • ${preco}`;
+            modalPriceBtn.textContent = `Ver detalhes - ${preco}`;
             
             modal.classList.add('active');
         }
