@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chainsaw Man - BEAMDEEP</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+        .category-page {
+            display: flex;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 25px;
+        }
+
+        /* Sidebar de Filtros */
+        .sidebar {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group label {
+            display: block;
+            padding: 8px 0;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        /* Área dos Produtos */
+        .products-area {
+            flex: 2;
+        }
+
+        .products-area h1 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 2.4rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            
+        }
+        
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo" style="display: flex;"> 
+            <img src="png/beam.png" alt="Logo" style="height: 1em; width: auto;"> 
+            BEAM<span>DEEP</span>
+        </div>
+        <button class="cart-btn"><img src="png/saco.png" style="width: 40px; height: 40px;"> Carrinho (0)</button>
+    </header>
+
+    <div class="container">
+        <a href="pginicial.html" style="color: var(--accent-blue); font-weight: bold;font-size: 1.4rem ;margin: 60px 0 10px; display: inline-block;"><strong> <span style="font-size: 1.7rem; font-style: inherit; "> ←</span> Voltar à Loja</strong> </a> </div>
+           
+        
+
+        <div class="category-page">
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>Filtros</h3>
+                <div class="filter-group">
+                    <strong>Product Type</strong><br><br>
+                    <label><input type="checkbox" checked> Chainsaw Man</label>
+                    <label><input type="checkbox"> Fate SAGA</label>
+                    <label><input type="checkbox"> Jujutsu Kaisen</label>
+                     <label><input type="checkbox"> Bleach</label>
+                </div>
+            </aside>
+
+            <!-- Área Principal -->
+            <section class="products-area">
+                <h1>Chainsaw Man Collection</h1>
+                
+                <div class="products-grid">
+                    
+                    <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Pochita', 'R$ 89,99', 'png/pochita.png', 'Pochita o ser mais fofo de Chainsaw Man...','pochita.html')">
+                        <div class="img-container">
+                            <img src="png/pochita.png" alt="Pochita">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="product-title">Pelúcia Pochita</h3>
+                            <p class="product-price">R$ 89,99</p>
+                            <div class="progress-box">
+                                <div class="progress-bar" style="width: 85%;"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span><strong>170</strong> vendidos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Denji', 'R$99,99', 'png/denji.jpg', 'Adquira agora essa pelúcia exclusiva de Chainsaw Man...')">
+                        <div class="img-container">
+                            <img src="png/denji.jpg" alt="Denji">
+                         </div>
+                         <div class="card-info">
+                            <h3 class="product-title">Pelúcia Denji</h3>
+                            <p class="product-price">R$99,99</p>
+                            <div class="progress-box">
+                                <div class="progress-bar" style="width: 50%;"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span><strong>73</strong> vendidos</span>
+                            </div>
+                         </div>
+                    </div>
+                
+
+                <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Reze', 'R$ 109,99', 'png/reze.jpg', 'Reze, a mais amada e popular entre os fãs...')">
+                        <div class="img-container">
+                            <img src="png/reze.jpg" alt="Reze">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="product-title">Pelúcia Reze</h3>
+                            <p class="product-price">R$ 109,99</p>
+                            <div class="progress-box">
+                                <div class="progress-bar" style="width: 85%;"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span><strong>80</strong> vendidos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Adicione mais cards aqui conforme necessário -->
+                    
+                </div>
+            </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="productModal" onclick="fecharJanelaFlutuante(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="forçarFechar()">✕</button>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img id="modalImgSrc" src="" alt="Produto">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <button class="btn-buy" id="modalPriceBtn"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="java.js"></script>
+</body>
+</html>
