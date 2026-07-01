@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra - BEAMDEEP</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+        .checkout-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 25px;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .checkout-summary, .checkout-payment {
+            flex: 1;
+            min-width: 300px;
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 20px;
+        }
+
+        .payment-option {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .payment-option.active {
+            border-color: var(--accent-blue);
+            background: rgba(162, 37, 235, 0.1);
+        }
+
+        .total {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            text-align: right;
+            margin: 20px 0;
+        }
+
+        button.finalizar {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.3rem;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        #cep {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo" style="display: flex;"> 
+            <img src="png/beam.png" alt="Logo" style="height: 1em; width: auto;"> 
+            BEAM<span>DEEP</span>
+        </div>
+        <a href="carrinho.html" class="cart-btn">
+            <img src="png/saco.png" style="width: 40px; height: 40px;"> 
+            Carrinho (<span id="cart-count">0</span>)
+        </a>
+    </header>
+
+    <div class="container">
+        <a href="carrinho.html" style="color: var(--accent-blue); font-weight: bold; margin: 20px 0; display: inline-block;">
+            ← Voltar ao Carrinho
+        </a>
+
+        <h1 style="text-align: center; color: white; margin: 30px 0;">Finalizar Compra</h1>
+
+        <div class="checkout-container">
+            
+            <!-- Resumo do Pedido -->
+            <div class="checkout-summary">
+                <h2>Resumo do Pedido</h2>
+                <div id="cart-items-summary"></div>
+                <hr>
+                <div class="total">
+                    Subtotal: R$ <span id="subtotal">0.00</span><br>
+                    Frete: R$ <span id="frete">10.00</span><br>
+                    <strong>Total: R$ <span id="total-final">0.00</span></strong>
+                </div>
+            </div>
+
+            <!-- Métodos de Pagamento -->
+            <div class="checkout-payment">
+                <h2>Método de Pagamento</h2>
+                
+                <div class="payment-option active" id="pix-option" onclick="selecionarPagamento('pix')">
+                    <strong>PIX</strong><br>
+                    <small>Pague instantaneamente com QR Code</small>
+                </div>
+
+                <div class="payment-option" id="cartao-option" onclick="selecionarPagamento('cartao')">
+                    <strong>Cartão de Crédito</strong><br>
+                    <small>Visa, Master, Elo</small>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <label>CEP para Entrega:</label><br>
+                    <input type="text" id="cep" maxlength="9" placeholder="00000-000" 
+                           oninput="formatarCEP(this); calcularTotal()">
+                </div>
+
+                <button onclick="finalizarCompra()" class="finalizar" style="margin-top: 30px;">
+                    Confirmar Pedido e Pagar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="java.js"></script>
+    <script>
+        function formatarCEP(input) {
+            let valor = input.value.replace(/\D/g, ''); // Remove tudo que não é número
+            if (valor.length > 8) valor = valor.slice(0, 8);
+            if (valor.length > 5) {
+                valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+            input.value = valor;
+        }
+
+        function calcularTotal() {
+            let subtotal = 0;
+            carrinho.forEach(item => {
+                subtotal += item.preco * item.quantidade;
+            });
+
+            const frete = 10.00;
+            const total = subtotal + frete;
+
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('frete').textContent = frete.toFixed(2);
+            document.getElementById('total-final').textContent = total.toFixed(2);
+        }
+
+        function renderizarResumo() {
+            const container = document.getElementById('cart-items-summary');
+            let html = '';
+            let subtotal = 0;
+
+            carrinho.forEach(item => {
+                const sub = item.preco * item.quantidade;
+                subtotal += sub;
+                html += `
+                    <div style="display:flex; justify-content:space-between; margin:12px 0;">
+                        <span>${item.nome} × ${item.quantidade}</span>
+                        <span>R$ ${sub.toFixed(2)}</span>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+            calcularTotal();
+        }
+
+        function selecionarPagamento(tipo) {
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('active'));
+            if (tipo === 'pix') document.getElementById('pix-option').classList.add('active');
+            else document.getElementById('cartao-option').classList.add('active');
+        }
+
+        function finalizarCompra() {
+            if (carrinho.length === 0) {
+                alert("Seu carrinho está vazio!");
+                return;
+            }
+            const cep = document.getElementById('cep').value;
+            if (cep.length < 8) {
+                alert("Por favor, informe um CEP válido.");
+                return;
+            }
+
+            alert(`✅ Pedido realizado com sucesso!\n\nTotal: R$ ${document.getElementById('total-final').textContent}\nCEP: ${cep}\n\nObrigado por comprar na BEAMDEEP!`);
+            
+            carrinho = [];
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            window.location.href = "pginicial.html";
+        }
+
+        // Inicializa
+        document.addEventListener('DOMContentLoaded', () => {
+            renderizarResumo();
+            atualizarContadorCarrinho();
+        });
+    </script>
+</body>
+</html>
