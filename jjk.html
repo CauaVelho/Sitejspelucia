@@ -3,5 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> BEAMDEEP - Pelúcias Jujutsu Kaisen</title>
+    <title>Jujutsu Kaisen - BEAMDEEP</title>
+    <link rel="stylesheet" href="css.css">
+    <style>
+        .category-page {
+            display: flex;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 25px;
+        }
+
+        /* Sidebar de Filtros */
+        .sidebar {
+            width: 260px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group label {
+            display: block;
+            padding: 8px 0;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        /* Área dos Produtos */
+        .products-area {
+            flex: 2;
+        }
+
+        .products-area h1 {
+            color: white;
+            margin-bottom: 25px;
+            font-size: 2.4rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            
+        }
+        
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+    </style>
 </head>
+<body>
+
+    <header class="navbar">
+        <div class="logo" style="display: flex;"> 
+            <img src="png/beam.png" alt="Logo" style="height: 1em; width: auto;"> 
+            BEAM<span>DEEP</span>
+        </div>
+        <a href="carrinho.html" class="cart-btn">
+    <img src="png/saco.png" style="width: 40px; height: 40px;"> 
+    Carrinho (<span id="cart-count">0</span>)
+</a>
+    </header>
+
+    <div class="container">
+        <a href="pginicial.html" ; class="back-button"  style="color: var(white); font-weight: bold;font-size: 1.2rem ;margin: 50px 0 10px; display: inline-block;"><strong> <span style="font-size: 1.4rem; font-style: center; "> ← </strong></span> Voltar à Loja </a> </div>
+           
+           
+        
+
+        <div class="category-page">
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>Filtros</h3>
+                <div class="filter-group">
+                    <strong>Product Type</strong><br><br>
+                   <label><input type="checkbox" checked><a href="csm.html">Chainsaw Man </a></label>
+                    <label><input type="checkbox"> <a href="fateSG.html">Fate SAGA </a></label>
+                    <label><input type="checkbox"> <a href="jjk.html"> Jujutsu Kaisen</a> </label>
+                     <label><input type="checkbox"> <a href="deltarune.html"> Deltarune </a></label>
+                </div>
+            </aside>
+
+            <!-- Área Principal -->
+            <section class="products-area">
+                <h1>Jujutsu Kaisen Collection</h1>
+                
+                <div class="products-grid">
+                    
+                    <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Satoru Gojo', 'R$ 120,00', 'png/gojo.png', 'Entre o ceús e a terra, ele pode ser seu! ...','gojo.html')">
+                        <div class="img-container">
+                            <img src="png/gojo.png" alt="Satoru Gojo">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="product-title">Pelúcia Satoru Gojo</h3>
+                            <p class="product-price">R$ 120,00</p>
+                            <div class="progress-box">
+                                <div class="progress-bar" style="width: 85%;"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span><strong>170</strong> vendidos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Nanami Kento', 'R$108,99', 'png/nanami.webp', 'Adquira agora essa pelúcia exclusiva do Nanami ...','nanami.html')"> 
+
+                        <div class="img-container">
+                            <img src="png/nanami.webp" alt="Nanami Kento">
+                         </div>
+                         <div class="card-info">
+                            <h3 class="product-title">Pelúcia Nanami Kento</h3>
+                            <p class="product-price">R$108,99</p>
+                            <div class="progress-box">
+                                <div class="progress-bar" style="width: 50%;"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span><strong>73</strong> vendidos</span>
+                            </div>
+                         </div>
+                    </div> 
+                   
+                
+
+                <div class="product-card" onclick="abrirJanelaFlutuante('Pelúcia Yuji Itadori', 'R$ 110,00', 'png/itadori.webp', 'Itadori Yuji um dos protagonista mais famoso da atualidade...','itadori.html')">
+                        <div class="img-container">
+                            <img src="png/itadori.webp" alt="Yuji Itadori">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="product-title">Pelúcia Yuji Itadori</h3>
+                            <p class="product-price">R$ 110,00</p>
+                            <div class="progress-box">
+                                <div class="progress-bar" style="width: 85%;"></div>
+                            </div>
+                            <div class="progress-text">
+                                <span><strong>80</strong> vendidos</span>
+                            </div> 
+                        </div>
+                    </div>
+                    <!-- Adicione mais cards aqui conforme necessário -->
+                    
+                </div>
+            </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="productModal" onclick="fecharJanelaFlutuante(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="forçarFechar()">✕</button>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img id="modalImgSrc" src="" alt="Produto">
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <p id="modalDescription"></p>
+                    <button class="btn-buy" id="modalPriceBtn"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="java.js"></script>
+</body>
+</html>
