@@ -13,7 +13,10 @@
             <img src="png/beam.png" alt="Logo" style="height: 1em; width: auto;"> 
             BEAM<span>DEEP</span>
         </div>
-        <button class="cart-btn"><img src="png/saco.png" style="width: 40px; height: 40px;"> Carrinho (0)</button>
+        <a href="carrinho.html" class="cart-btn">
+    <img src="png/saco.png" style="width: 40px; height: 40px;"> 
+    Carrinho (<span id="cart-count">0</span>)
+</a>
     </header>
 
     <div class="container">
@@ -24,7 +27,7 @@
                 <div class="brand-item"><a href="csm.html">Chainsaw Man</a></div>
                 <div class="brand-item"><a href="fateSG.html">Fate SAGA</a></div>
                 <div class="brand-item"><a href="jjk.html">Jujutsu Kaisen</a></div>
-                <div class="brand-item"><a href="bleach.html">Bleach</a></div>
+                <div class="brand-item"><a href="deltarune.html">DELTARUNE</a></div>
             </div>
         </section>
 
@@ -32,8 +35,8 @@
             <h3 class="filter-title">Produtos Disponíveis</h3>
             <select class="select-custom" id="categoryFilter">
                 <option value="todos">Todos os Produtos</option>
-                <option value="ativos">Mais Vendidos</option>
-                <option value="novos">Lançamentos</option>
+                <option value="vendidos">Mais Vendidos</option>
+                <option value="funcional">Lançamentos</option>
                 <option value="ativos">Indisponíves</option>
             </select>
         </section>
@@ -56,7 +59,7 @@
         </div>
     </div>
 
-    <div class="product-card" onclick="abrirJanelaFlutuante('Gilgamesh', 'R$ 100,90', 'png/gilgamesh.png' , 'O maior rei de toda Babilônia, agora disponivel como uma pelúcia adorável para sua estante. Garanta o seu agora.')">
+    <div class="product-card" onclick="abrirJanelaFlutuante('Gilgamesh', 'R$ 100,90', 'png/gilgamesh.png' , 'O maior rei de toda Babilônia, agora disponivel como uma pelúcia adorável para sua estante. Garanta o seu agora.', 'gilgamesh.html')">
         <div class="img-container">
             <img src="png/gilgamesh.png" alt="Gilgamesh">
         </div>
@@ -72,7 +75,7 @@
         </div>
     </div>
 
-    <div class="product-card" onclick="abrirJanelaFlutuante('Satoru Gojo', 'R$ 120,00', 'png/gojo.png', 'Entre o ceús e a terra, ele pode ser seu! Adquira essa pelúcia exclusiva do Satoru Gojo.')">
+    <div class="product-card" onclick="abrirJanelaFlutuante('Satoru Gojo', 'R$ 120,00', 'png/gojo.png', 'Entre o ceús e a terra, ele pode ser seu! Adquira essa pelúcia exclusiva do Satoru Gojo.','gojo.html')">
         <div class="img-container">
             <img src="png/gojo.png" alt="Satoru Gojo">
         </div>
@@ -109,5 +112,20 @@
     </div>
 
     <script src="java.js"></script>
+
+    <script>
+    // Filtrar por categoria (redirecionamento)
+    document.getElementById('categoryFilter').addEventListener('change', function() {
+        const valor = this.value;
+        
+        if (valor === "funcional") {
+            window.location.href = "deltarune.html";
+        } 
+        if  ( valor=="vendidos") {
+            window.location.href = "csm.html";
+        }
+       
+    });
+</script>
 </body>
 </html>
